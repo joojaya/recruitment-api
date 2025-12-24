@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const auth = require("../middlewares/authMiddleware");
+const { protect } = require("../middlewares/authMiddleware");
 const controller = require("../controllers/screeningController");
 
-router.post("/:candidateId/score", auth, controller.scoreCandidate);
-router.get("/shortlist", auth, controller.getShortlisted);
+router.post("/:candidateId/score", protect, controller.scoreCandidate);
+router.get("/shortlist", protect, controller.getShortlisted);
 
 module.exports = router;

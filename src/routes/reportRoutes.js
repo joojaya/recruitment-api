@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const auth = require("../middlewares/authMiddleware");
+const { protect } = require("../middlewares/authMiddleware");
 const controller = require("../controllers/reportController");
 
-router.get("/hiring-pipeline", auth, controller.hiringPipeline);
+router.get("/hiring-pipeline", protect, controller.hiringPipeline);
 
 module.exports = router;

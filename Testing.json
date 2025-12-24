@@ -1,0 +1,146 @@
+{
+  "info": {
+    "name": "Resume Screening API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/register",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "register"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Varshini\",\n  \"email\": \"varshini@test.com\",\n  \"password\": \"123456\"\n}",
+          "options": { "raw": { "language": "json" } }
+        }
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "login"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"varshini@test.com\",\n  \"password\": \"123456\"\n}",
+          "options": { "raw": { "language": "json" } }
+        }
+      }
+    },
+    {
+      "name": "Create Candidate",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/candidates",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "candidates"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Gowtham\",\n  \"email\": \"gowtham@gmail.com\",\n  \"skills\": [\"Node.js\", \"MongoDB\", \"Express\"],\n  \"experience\": 3\n}",
+          "options": { "raw": { "language": "json" } }
+        }
+      }
+    },
+    {
+      "name": "Get Candidates",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/candidates?search=Node&page=1&limit=5",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "candidates"],
+          "query": [
+            { "key": "search", "value": "Node" },
+            { "key": "page", "value": "1" },
+            { "key": "limit", "value": "5" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Upload Resume",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/candidates/{{candidateId}}/resume",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "candidates", "{{candidateId}}", "resume"]
+        },
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "resume",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Score Candidate",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/screening/{{candidateId}}/score",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "screening", "{{candidateId}}", "score"]
+        }
+      }
+    },
+    {
+      "name": "Get Shortlisted Candidates",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/screening/shortlist",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "screening", "shortlist"]
+        }
+      }
+    },
+    {
+      "name": "Hiring Pipeline Report",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/reports/hiring-pipeline",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "reports", "hiring-pipeline"]
+        }
+      }
+    }
+  ]
+}
